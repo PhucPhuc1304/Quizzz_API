@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-var indexRouter = require("./routes/index");
 var authenRouter = require("./routes/authen");
 
 var app = express();
@@ -20,9 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-
-app.use("/authen", authenRouter);
+app.use("/api/v1/authen", authenRouter);
 
 mongoose.connect("mongodb://127.0.0.1:27017/Quizz_API_DB");
 mongoose.connection.once("open", function () {
