@@ -29,7 +29,7 @@ mongoose.connection.once("open", function () {
   console.log("Connect database success");
 });
 mongoose.connection.on("error", function () {
-  console.log(" k thanh cong");
+  console.log("Connect database failed");
 });
 
 // catch 404 and forward to error handler

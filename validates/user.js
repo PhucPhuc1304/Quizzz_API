@@ -7,33 +7,26 @@ var options = {
     min: 6,
     max: 80,
   },
-  password: {
-    minLength: 8,
-    minLowercase: 1,
-    minUppercase: 1,
-    minNumbers: 1,
-    minSymbols: 1,
-  },
-  roles: ["admin", "user", "tutor"],
+  roles: ["admin", "user", "teacher"],
 };
 
 module.exports = {
   validator: function () {
     return [
       body(
-        "userName",
+        "username",
         util.format(
           message.size_string_message,
-          "userName",
+          "username",
           options.username.min,
           options.username.max
         )
       ).isLength(options.username),
-      body("email", "email phai dung dinh dang").isEmail(),
-      body("password", "password phai la password manh").isStrongPassword(
-        options.password
-      ),
-      body("role", "role khong hop le").isIn(options.roles),
+      body("email", "Email không đúng định dạng").isEmail(),
+      body("password", "Mật khẩu không đủ mạnh").isStrongPassword(),
+      body("role", "Role invalidate").isIn(options.roles),
+      body("firstname", "Tên không được để trống").notEmpty(),
+      body("lastname", "Họ không được để trống").notEmpty(),
     ];
   },
 };

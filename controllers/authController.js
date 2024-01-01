@@ -17,17 +17,17 @@ const register = async (req, res, next) => {
       return;
     }
 
-    const user = await modelUser.getByName(req.body.userName);
+    const user = await modelUser.getByName(req.body.username);
     if (user) {
       responseData.responseReturn(res, 404, false, "User đã tồn tại");
     } else {
       const newUser = await modelUser.createUser({
-        userName: req.body.userName,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         role: req.body.role,
       });
-      responseData.responseReturn(res, 200, true, newUser);
+      responseData.responseReturn(res, 200, "Đăng ký thành công", newUser);
     }
   } catch (error) {
     console.error(error);
@@ -37,14 +37,14 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const result = await modelUser.login(req.body.userName, req.body.password);
+    const result = await modelUser.login(req.body.username, req.body.password);
     if (result.err) {
       responseData.responseReturn(res, 400, true, result.err);
       return;
     }
     const token = result.getJWT();
     res.cookie("tokenJWT", token);
-    responseData.responseReturn(res, 200, true, token);
+    responseData.responseReturn(res, 200, "Đăng nhập thành công", token);
   } catch (error) {
     console.error(error);
     responseData.responseReturn(res, 500, true, "Internal Server Error");
@@ -64,7 +64,6 @@ const me = async function (req, res, next) {
       );
       return;
     }
-
     req.userID = loginResult.id;
   } catch (loginError) {
     console.error(loginError);
@@ -101,8 +100,13 @@ const me = async function (req, res, next) {
   }
 };
 
+const logout = async function (req, res, next) {
+
+};
+
 module.exports = {
   register,
   login,
+  logout,
   me,
 };

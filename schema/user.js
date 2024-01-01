@@ -3,10 +3,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const configs = require("../helper/configs");
 const schema = new mongoose.Schema({
-  email: String,
-  userName: String,
+  username: String,
   password: String,
+  firstname: String,
+  lastname: String,
+  email: String,
   role: String,
+  avatar_url: String,
 });
 
 schema.pre("save", function () {
@@ -21,13 +24,13 @@ schema.methods.getJWT = function () {
   return token;
 };
 
-schema.statics.checkLogin = async function (userName, password) {
-  if (!userName || !password) {
+schema.statics.checkLogin = async function (username, password) {
+  if (!username || !password) {
     return { err: "Hay nhap day du username va password" };
   }
-  var user = await this.findOne({ userName: userName });
+  var user = await this.findOne({ username: username });
   if (!user) {
-    return { err: "userName khong ton tai" };
+    return { err: "username khong ton tai" };
   }
   var result = bcrypt.compareSync(password, user.password);
   if (!result) {

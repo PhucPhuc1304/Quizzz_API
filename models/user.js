@@ -12,13 +12,13 @@ module.exports = {
       }
     }
     if (query.key) {
-      Search.userName = new RegExp(query.key, "i");
+      Search.username = new RegExp(query.key, "i");
     }
     var limit = parseInt(query.limit) || 2;
     var page = parseInt(query.page) || 1;
     var skip = (page - 1) * limit;
     return SchemaUser.find(Search)
-      .select("userName password")
+      .select("username password")
       .sort(sort)
       .limit(limit)
       .skip(skip)
@@ -28,12 +28,12 @@ module.exports = {
     return SchemaUser.findById(id);
   },
   getByName: function (name) {
-    return SchemaUser.findOne({ userName: name }).exec();
+    return SchemaUser.findOne({ username: name }).exec();
   },
   createUser: function (user) {
     return new SchemaUser(user).save();
   },
-  login: function (userName, password) {
-    return SchemaUser.checkLogin(userName, password);
+  login: function (username, password) {
+    return SchemaUser.checkLogin(username, password);
   },
 };
