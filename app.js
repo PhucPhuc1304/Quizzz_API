@@ -24,7 +24,7 @@ app.use('/', indexRouter);
 
 app.use('/authen',authenRouter);
 
-mongoose.connect("mongodb://127.0.0.1:27017/TestS2");
+mongoose.connect("mongodb://127.0.0.1:27017/Quizz_API_DB");
 mongoose.connection.once('open', function(){
   console.log("thanh cong");
 });
