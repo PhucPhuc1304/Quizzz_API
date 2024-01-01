@@ -1,23 +1,26 @@
-const jwt = require('jsonwebtoken');
-const configs = require('../helper/configs');
-const Role_DS = require('../helper/role')
-const modelUser = require('../models/user');
+const jwt = require("jsonwebtoken");
+const configs = require("../helper/configs");
+const Role_DS = require("../helper/role");
+const modelUser = require("../models/user");
 
 module.exports = {
   checkLogin: async function (req) {
     const result = {};
     const token = req.headers.authorization;
-    console.log(token)
+    console.log(token);
 
     if (!token) {
       result.err = "Vui lòng đăng nhập";
-      result.status = 401; 
+      result.status = 401;
     }
 
     if (token.startsWith("Bearer ")) {
       const tokenWithoutPrefix = token.slice(7);
       try {
-        const decodedToken = await jwt.verify(tokenWithoutPrefix, configs.SECRET_KEY);
+        const decodedToken = await jwt.verify(
+          tokenWithoutPrefix,
+          configs.SECRET_KEY
+        );
         return { id: decodedToken.id };
       } catch (error) {
         result.err = "Vui lòng đăng nhập";
@@ -38,7 +41,6 @@ module.exports = {
       const role = user.role;
       const DSRole = Role_DS.DSRole_Read;
       if (DSRole.includes(role)) {
-        
         return result;
       } else {
         result.err = "Bạn không đủ quyền.";
