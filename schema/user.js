@@ -36,7 +36,6 @@ schema.statics.checkLogin = async function (username, password) {
   if (!result) {
     return { err: "password sai" };
   }
-  console.log(user);
   return user;
 };
 
