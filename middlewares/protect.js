@@ -1,14 +1,4 @@
-const logout = function (req, res, next) {
-  try {
-    const token = req.headers.authorization;
-
-    res.clearCookie("tokenJWT");
-    responseData.responseReturn(res, 200, true, "Đăng xuất thành công");
-  } catch (error) {
-    console.error(error);
-    responseData.responseReturn(res, 500, true, "Internal Server Error");
-  }
-};const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const configs = require("../helper/configs");
 const Role_DS = require("../helper/role");
 const modelUser = require("../models/user");
