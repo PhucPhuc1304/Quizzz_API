@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
   }
 };
 
-const me = async function (req, res, next) {
+const profile = async function (req, res, next) {
   try {
     // Check login
     const loginResult = await checkLogin(req);
@@ -100,13 +100,19 @@ const me = async function (req, res, next) {
   }
 };
 
-const logout = async function (req, res, next) {
-
+const logout = function (req, res, next) {
+  try {
+    res.clearCookie("tokenJWT");
+    responseData.responseReturn(res, 200, true, "Đăng xuất thành công");
+  } catch (error) {
+    console.error(error);
+    responseData.responseReturn(res, 500, true, "Internal Server Error");
+  }
 };
 
 module.exports = {
   register,
   login,
   logout,
-  me,
+  profile,
 };
