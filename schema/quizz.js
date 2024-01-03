@@ -7,14 +7,6 @@ const quizzSchema = new mongoose.Schema({
       ref: "question",
     },
   ],
-  difficultyLevel: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "difficulty_level",
-  },
-  subject: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "subject",
-  },
 });
 
 const Quizz = mongoose.model("quizz", quizzSchema);
