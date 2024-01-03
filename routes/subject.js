@@ -3,22 +3,18 @@ const router = express.Router();
 const SubjectValidate = require("../validates/subject");
 const subjectController = require("../controllers/subjectController");
 
-router.get("/subjects", subjectController.getAll);
+router.get("/", subjectController.getAll);
 
-router.get("/subjects/:subjectName", subjectController.findByName);
+router.get("/:subjectName", subjectController.findByName);
 
-router.post(
-  "/subjects",
-  SubjectValidate.validator(),
-  subjectController.createSubject
-);
+router.post("/", SubjectValidate.validator(), subjectController.createSubject);
 
-router.delete("/subjects/:id", subjectController.deleteSubject);
+router.delete("/:id", subjectController.deleteSubject);
 
 router.put(
-  "/subjects/:id",
+  "/:id",
   SubjectValidate.validator(),
   subjectController.updateSubject
 );
 
-module.exports = router;    
+module.exports = router;
