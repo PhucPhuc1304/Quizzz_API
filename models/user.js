@@ -1,7 +1,7 @@
 var SchemaUser = require("../schema/user");
 
 module.exports = {
-  getall: function (query) {
+  getAll: function (query) {
     var sort = {};
     var Search = {};
     if (query.sort) {
