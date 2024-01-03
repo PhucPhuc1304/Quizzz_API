@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 const questionSchema = new mongoose.Schema({
   questionText: String,
-  questionA: String,
-  questionB: String,
-  questionC: String,
-  questionD: String,
+  answerA: String,
+  answerB: String,
+  answerC: String,
+  answerD: String,
   correctAnswer: String,
   subject: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "subject",
+    ref: "subjects",
   },
   difficultyLevel: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "difficulty_level",
+    ref: "difficulty_levels",
   },
 });
 
