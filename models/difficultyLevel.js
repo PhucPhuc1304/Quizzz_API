@@ -1,4 +1,4 @@
-var SchemaDifficultylevel = require("../schema/difficulty_level");
+var SchemaDifficultylevel = require("../schema/difficultyLevel");
 
 module.exports = {
   getAll: function (query) {

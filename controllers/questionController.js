@@ -1,7 +1,7 @@
 const responseData = require("../helper/responseData");
 const { validationResult } = require("express-validator");
 const modelQuestion = require("../models/question");
-const modelDifficultyLevel = require("../models/difficulty_level");
+const modelDifficultyLevel = require("../models/difficultyLevel");
 const modelSubject = require("../models/subject");
 
 const getAll = async (req, res, next) => {

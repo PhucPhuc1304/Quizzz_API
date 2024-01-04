@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const DifficultyLevelValidate = require("../validates/difficulty_level");
+const DifficultyLevelValidate = require("../validates/difficultyLevel");
 const difficultyLevelController = require("../controllers/difficultyLevelController");
 
 router.get("/", difficultyLevelController.getAll);

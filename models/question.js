@@ -55,4 +55,10 @@ module.exports = {
   deleteQuestion: function (id) {
     return SchemaQuestion.findByIdAndDelete(id);
   },
+  getRandomQuestions: function (subject, difficultyLevel, limit) {
+    return SchemaQuestion.aggregate([
+      { $match: { subject: subject, difficultyLevel: difficultyLevel } },
+      { $sample: { size: limit } },
+    ]).exec();
+  },
 };

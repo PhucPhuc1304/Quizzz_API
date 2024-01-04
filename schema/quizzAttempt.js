@@ -18,6 +18,7 @@ const quizAttemptSchema = new mongoose.Schema({
       answer: String,
     },
   ],
+  score: Number,
 });
 
 const QuizAttempt = mongoose.model("quizAttempt", quizAttemptSchema);
