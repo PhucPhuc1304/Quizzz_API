@@ -9,6 +9,7 @@ var authenRouter = require("./routes/authen");
 var difficultyLevelRouter = require("./routes/difficultyLevel");
 var subjectRouter = require("./routes/subject");
 var questionRouter = require("./routes/question");
+var quizzRouter = require("./routes/quizz");
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use("/api/v1/authen", authenRouter);
 app.use("/api/v1/difficulty-levels", difficultyLevelRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/questions", questionRouter);
+app.use("/api/v1/quizzes", quizzRouter);
 
 mongoose.connect("mongodb://127.0.0.1:27017/Quizz_API_DB");
 mongoose.connection.once("open", function () {

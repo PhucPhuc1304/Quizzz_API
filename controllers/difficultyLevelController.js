@@ -1,6 +1,6 @@
 const responseData = require("../helper/responseData");
 const { validationResult } = require("express-validator");
-const modelDifficultyLevel = require("../models/difficulty_level");
+const modelDifficultyLevel = require("../models/difficultyLevel");
 
 const getAll = async (req, res, next) => {
   try {

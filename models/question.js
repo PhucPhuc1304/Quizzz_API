@@ -55,4 +55,23 @@ module.exports = {
   deleteQuestion: function (id) {
     return SchemaQuestion.findByIdAndDelete(id);
   },
+  getRandomQuestions: function (subjectId, difficultyId, limit) {
+    return SchemaQuestion.aggregate([
+      {
+        $match: {
+          subject: subjectId,
+          difficultyLevel: difficultyId,
+        },
+      },
+      { $sample: { size: limit } },
+    ])
+      .exec()
+      .then((questions) => {
+        return questions;
+      })
+      .catch((error) => {
+        console.error(`Error fetching questions: ${error}`);
+        throw error;
+      });
+  },
 };
